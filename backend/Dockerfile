@@ -1,12 +1,12 @@
 FROM python:3.8
 
-ARG FLASK_ENV
-RUN mkdir /app
+ENV FLASK_APP=app
+ENV FLASK_ENV=development
 
-COPY . /app
-WORKDIR /app
+COPY . /
+WORKDIR /
 
 RUN python3 -m pip install pipenv
 RUN pipenv install --deploy --ignore-pipfile
 
-CMD ["pipenv", "run", "python", "app.py"]
+CMD ["pipenv", "run", "flask", "run", "--host", "0.0.0.0"]
