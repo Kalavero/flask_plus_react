@@ -1,9 +1,10 @@
-from . import db
+from app import db
+from app.enums import OrderStatus
 
 class Order(db.Model):
     __tablename_ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.foreignKey('user_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.Enum(OrderStatus), nullable=False)
     value = db.Column(db.Float)

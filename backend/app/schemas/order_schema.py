@@ -1,3 +1,6 @@
+from app import ma
+from app.models import Order
+
 class OrderSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Order

@@ -1,4 +1,4 @@
-from . import db
+from app import db
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -13,3 +13,6 @@ class User(db.Model):
         self.last_name = last_name
         self.email = email
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit

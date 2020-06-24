@@ -1,6 +1,11 @@
 from flask import current_app as app
-from controllers import users_controller
+from app.controllers import UsersController
+from app.controllers import OrdersController
 
-@app_route('/', methods=['GET'])
+@app.route('/users', methods=['GET'])
 def users_index():
-    UsersController().index()
+    return UsersController().index()
+
+@app.route('/users', methods=['POST'])
+def users_create():
+    return UsersController().create()
