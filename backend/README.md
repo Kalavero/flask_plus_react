@@ -7,13 +7,31 @@
 
 ## Executar
 
-1 - Rode o seguinte comando:
+1 - Faça o build do projeto
 
 ```shell
-docker build . -t app
-docker run -p 5000:5000 app
+docker-compose build
 ```
 
+2 - Rode o seguinte comando para criar o banco:
+
+```shell
+docker-compose run --rm db bash
+
+su - postgres
+
+psql -h db -U app # coloque o password: 'password' conforme definido no docker-compose)
+
+CREATE DATABASE app_db;
+
+\q
+```
+
+3 - Saia do container e rode:
+
+```shell
+docker-compose up
+```
 
 ### Enpoints
 

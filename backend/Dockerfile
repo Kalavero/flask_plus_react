@@ -11,5 +11,3 @@ ADD Pipfile.lock /srv/app/Pipfile.lock
 RUN pipenv install --deploy --ignore-pipfile
 
 ADD . /srv/app
-
-CMD ["pipenv", "run", "flask", "run", "--host", "0.0.0.0"]

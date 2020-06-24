@@ -6,7 +6,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
-    status = db.Column(db.Enum(OrderStatus), nullable=False)
+    status = db.Column(db.Enum(OrderStatus, create_type=False), nullable=False)
     value = db.Column(db.Float)
 
     def __init__(self, user_id, created_at, status, value):

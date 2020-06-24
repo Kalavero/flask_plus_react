@@ -1,0 +1,36 @@
+version: '3.6'
+
+x-default: &default
+  env_file: .env
+  depends_on:
+    - db
+  stdin_open: true
+  tty: true
+  volumes:
+      - .:/srv/app
+  links:
+    - db
+services:
+  web:
+    <<: *default
+    build:
+      context: .
+    command: 'pipenv run flask run --host 0.0.0.0'
+    environment:
+      SECRET_KEY: dev
+      FLASK_APP: app
+      SQLALCHEMY_DATABASE_URI: postgresql://app:password@db:5432/app_db
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+  db:
+    command: postgres -c listen_addresses='*'
+    image: postgres:12.0
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
