@@ -1,10 +1,7 @@
 FROM python:3.8
 
-ENV FLASK_APP=app
-ENV FLASK_ENV=development
-
-COPY . /
-WORKDIR /
+COPY . /srv/app
+WORKDIR /srv/app
 
 RUN python3 -m pip install pipenv
 RUN pipenv install --deploy --ignore-pipfile

@@ -1,3 +1,5 @@
+from . import db
+
 class Order(db.Model):
     __tablename_ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
