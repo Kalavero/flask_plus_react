@@ -35,7 +35,7 @@ docker-compose up
 
 ### Enpoints
 
-#### GET /users HTTP/1.1
+#### GET /clientes HTTP/1.1
 
 Parametros: nenhum parametro necessário para esse endpoint
 
@@ -56,7 +56,7 @@ Content-Type: application/json
 
 ```
 
-#### GET /users/<id> HTTP/1.1
+#### GET /clientes/<id> HTTP/1.1
 
 Parametros: id(obrigatório)
 
@@ -75,7 +75,7 @@ Content-Type: application/json
 
 ```
 
-#### POST /users HTTP/1.1
+#### POST /clientes HTTP/1.1
 
 Parametros: first_name, last_name, email (todos os parametros são obrigatórios)
 
@@ -94,7 +94,7 @@ Content-Type: application/json
 
 ```
 
-#### PUT /users/<id> HTTP/1.1
+#### PUT /clientes/<id> HTTP/1.1
 
 Parametros: id(obrigatório), first_name, last_name, email
 
@@ -113,7 +113,7 @@ Content-Type: application/json
 
 ```
 
-#### DELETE /users/<id> HTTP/1.1
+#### DELETE /clientes/<id> HTTP/1.1
 Parametros: id(obrigatório)
 
 Resposta de sucesso (exemplo):
@@ -131,3 +131,108 @@ Content-Type: application/json
 
 ```
 
+#### GET /pedidos HTTP/1.1
+
+Parametros: nenhum parametro necessário para esse endpoint
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "id": "42",
+    "status": "pending",
+    "created_at": "2020-06-25T02:46:25.610466",
+    "value": '25.9',
+    "user_id": '1',
+  }
+]
+
+```
+
+#### GET /pedidos/<id> HTTP/1.1
+
+Parametros: id(obrigatório)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "status": "pending",
+  "created_at": "2020-06-25T02:46:25.610466",
+  "value": '25.9',
+  "user_id": '1',
+}
+
+```
+
+#### POST /pedidos HTTP/1.1
+
+Parametros: user_id, value (todos os parametros são obrigatórios)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
+#### PUT /pedidos/<id> HTTP/1.1
+
+Parametros: id(obrigatório), value, status, user_id, created_at
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "status": "pending",
+  "created_at": "2020-06-25T02:46:25.610466",
+  "value": '25.9',
+  "user_id": '1',
+}
+
+```
+
+#### DELETE /pedidos/<id> HTTP/1.1
+Parametros: id(obrigatório)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
+## TODO
+
+- [] Adicionar tratamento de erros
+- [] Adicionar autenticação via token
+- [] Garantir que a API sempre retornará um json
+- [] Alterar update para permitir apenas parametros específicos
