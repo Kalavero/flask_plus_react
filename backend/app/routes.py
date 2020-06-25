@@ -9,3 +9,7 @@ def users_index():
 @app.route('/users', methods=['POST'])
 def users_create():
     return UsersController().create()
+
+@app.route('/users/<id>', methods=['DELETE'])
+def users_delte(id):
+    return UsersController().delete(id)

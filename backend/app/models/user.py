@@ -12,7 +12,3 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit

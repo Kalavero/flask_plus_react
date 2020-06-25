@@ -1,7 +1,7 @@
-from flask import request, make_response
+from flask import request
 from app.models import User
-from app import db
 from app.schemas import UserSchema
+from app import db
 from flask import jsonify
 
 user_schema = UserSchema()
@@ -18,6 +18,15 @@ class UsersController:
         email = request.args.get('email')
 
         user = User(first_name, last_name, email)
-        user.save
+        db.session.add(user)
+        db.session.commit()
 
         return jsonify(user_schema.dump(user))
+
+    def delete(self, id):
+        user = User.query.get_or_404(id)
+        db.session.delete(user)
+        db.session.commit()
+
+        return jsonify(user_schema.dump(user)), 200
+
