@@ -19,9 +19,9 @@ class UsersController:
         return make_response(jsonify(user_schema.dump(user)), 200, HEADERS)
 
     def create(self):
-        first_name = request.args.get('first_name')
-        last_name = request.args.get('last_name')
-        email = request.args.get('email')
+        first_name = request.get_json().get('first_name')
+        last_name = request.get_json().get('last_name')
+        email = request.get_json().get('email')
 
         user = User(first_name, last_name, email)
         db.session.add(user)
@@ -37,12 +37,7 @@ class UsersController:
         return make_response(jsonify(user_schema.dump(user)), 200)
 
     def update(self, id):
-        update_params = {
-                'first_name': request.args.get('first_name'),
-                'last_name': request.args.get('last_name'),
-                'email': request.args.get('email')
-                }
-        update_params = { k: v for k, v in update_params.items() if v is not None }
+        update_params = request.get_json()
 
         user = User.query.filter_by(id=id)
 

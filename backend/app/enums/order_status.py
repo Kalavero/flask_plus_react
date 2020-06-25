@@ -1,6 +1,6 @@
 import enum
 
-class OrderStatus(enum.Enum):
+class OrderStatus(str, enum.Enum):
     PENDING = 'pending'
     FINISHED = 'finished'
 
