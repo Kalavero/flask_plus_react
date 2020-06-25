@@ -1,9 +1,12 @@
 import React from 'react'
+import { Heading } from './Heading';
+import { UsersList } from './UsersList';
 
 export const Home = () => {
   return (
     <div>
-      <h1> Home </h1>
+      <Heading></Heading>
+      <UsersList></UsersList>
     </div>
   )
 }
