@@ -6,10 +6,18 @@ from app.controllers import OrdersController
 def users_index():
     return UsersController().index()
 
+@app.route('/users/<id>', methods=['GET'])
+def users_show(id):
+    return UsersController().show(id)
+
 @app.route('/users', methods=['POST'])
 def users_create():
     return UsersController().create()
 
 @app.route('/users/<id>', methods=['DELETE'])
-def users_delte(id):
+def users_delete(id):
     return UsersController().delete(id)
+
+@app.route('/users/<id>', methods=['PUT'])
+def users_update(id):
+    return UsersController().update(id)

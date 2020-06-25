@@ -35,7 +35,7 @@ docker-compose up
 
 ### Enpoints
 
-#### GET /pedidos HTTP/1.1
+#### GET /users HTTP/1.1
 
 Parametros: nenhum parametro necessário para esse endpoint
 
@@ -45,19 +45,89 @@ Resposta de sucesso (exemplo):
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-"data": [
+[
   {
-    "type": "order",
-    "id": "1",
-    "attributes": {
-      "user_id": "42",
-      "status": "finished",
-      "value": 59.99,
-      "currency": 'brl',
-      "created_at": "2015-05-22T14:56:29.000Z",
-      "updated_at": "2015-05-22T14:56:28.000Z"
-    }
+    "id": "42",
+    "first_name": "andre",
+    "last_name": "souza",
+    "email": 'lukkalavero@yahoo.com',
   }
 ]
 
 ```
+
+#### GET /users/<id> HTTP/1.1
+
+Parametros: id(obrigatório)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
+#### POST /users HTTP/1.1
+
+Parametros: first_name, last_name, email (todos os parametros são obrigatórios)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
+#### PUT /users/<id> HTTP/1.1
+
+Parametros: id(obrigatório), first_name, last_name, email
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
+#### DELETE /users/<id> HTTP/1.1
+Parametros: id(obrigatório)
+
+Resposta de sucesso (exemplo):
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "42",
+  "first_name": "andre",
+  "last_name": "souza",
+  "email": 'lukkalavero@yahoo.com',
+}
+
+```
+
